@@ -36,14 +36,17 @@
 
 | Story | Estimated points | Actual hours | Was the estimate high, low, or about right? |
 |---|---|---|---|
-| S0.1 | 3 | | |
-| S0.2 | 2 | | |
-| S0.3 | 2 | | |
+| S0.1 | 3 | 1 | low |
+| S0.2 | 2 | 1 | low |
+| S0.3 | 2 | 1 | low |
 
 **Points completed (my first velocity number):** ____
 
 ## Sprint Review — one sentence
-
+All the acceptance criteria in linked issues now work:
+[#15] (https://github.com/FeralWitchCoven/dungeonforge/issues/15)
+[#16] (https://github.com/FeralWitchCoven/dungeonforge/issues/16)
+[#17] (https://github.com/FeralWitchCoven/dungeonforge/issues/17)
 > What can the project do now that it could not do at the start of the week?
 
 
