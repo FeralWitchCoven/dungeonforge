@@ -9,9 +9,9 @@
 
 | Tree | What lives here |
 |---|---|
-| Working Directory |  |
-| Staging Area (Index) |  |
-| HEAD |  |
+| Working Directory | Local file directory |
+| Staging Area (Index) | Where you go to commit files to whichever branch you are in. |
+| HEAD | Current position in local branch |
 
 ---
 
@@ -19,11 +19,20 @@
 
 **Commands I ran:**
 ```bash
+echo "oops" > accident.txt
+git add accident.txt
+git commit -m "feat: work that should have been on branch"
+
+git switch -c fix/rescued-work
+git switch main
+git reset --hard origin/main
 
 ```
 **What it did:**
+Added a file and "accidentally" commited it to main then fixed the mistake.
 
 **When I would use it again:**
+When I accidentally add a file to my main branch.
 
 ---
 
@@ -31,11 +40,17 @@
 
 **Commands I ran:**
 ```bash
+echo "x" > note.txt
+git add note.txt
+git commit -m "asdf"
 
+git commit --amend -m "docs: add note file"
 ```
 **What it did:**
+Added a note text file with a bad commit message, then fixed it.
 
 **Why you must not do this to a commit you already pushed:**
+Amending a commit that is already pushed rewrites history.
 
 ---
 
@@ -43,11 +58,16 @@
 
 **Commands I ran:**
 ```bash
-
+mkdir -p target
+echo "junk" > target/Main.class
+git add -f target/Main.class
+git commit -m "chore: oops, committed build output"
 ```
 **What it did:**
+"Accidentally" added a file that should be ignored.
 
 **Why adding it to `.gitignore` alone was not enough:**
+we forced added it to the commit.
 
 ---
 
@@ -55,13 +75,28 @@
 
 **Commands I ran:**
 ```bash
+git switch main
+git switch -c feature/a
+printf '# DungeonForge - branch A title\n' > README.md
+git commit -am "docs: title from branch A"
 
+git switch main
+git switch -c feature/b
+printf '# DungeonForge - branch B title\n' > README.md
+git commit -am "docs: title from branch B"
+
+git switch main
+git merge feature/a
+git merge feature/b
 ```
 **In the conflict markers, which side was "mine"?**
+My side was the branch A side.
 
 **What it did:**
+Changed the title from two different branches, causing a merge conflict.
 
 **How I would back out of a merge I regretted starting:**
+Checkout a previous commit and rebase.
 
 ---
 
@@ -69,11 +104,18 @@
 
 **Commands I ran:**
 ```bash
+git log --oneline
+git reset --hard HEAD~3
+git log --oneline
 
+git reflog
+git reset --hard <hash from before>
 ```
 **What `git reflog` showed me:**
+All previous commits including those nuked.
 
 **One sentence on why this changes how nervous I should be about Git:**
+Gives me a way to reinstate old files that were nuked.
 
 ---
 
@@ -84,4 +126,6 @@
 ---
 
 ## The one command I want to remember from today
-
+```bash
+git reset --hard HEAD~[n]
+```
