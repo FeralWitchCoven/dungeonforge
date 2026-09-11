@@ -27,13 +27,17 @@ what it claims to be.
 
 ### Flaw 1 — in `docs/backlog.md`
 
-**Which item:**
+**Which item:** 
+User Story 1.4
 
-**What's wrong with it:**
+**What's wrong with it:** 
+It is not negotiable because it dictates what the developer needs to do, is subjective to the developer, and "More professional code" is not testable.
 
-**Which INVEST letter(s) it violates, and how:**
+**Which INVEST letter(s) it violates, and how:** 
+N, V, and T
 
-**My repaired version:**
+**My repaired version:** 
+I will pick a real beneficiary and define what "better code" is in measurable terms.
 
 ```
 As a ...,
@@ -49,21 +53,27 @@ Acceptance Criteria
 
 ### Flaw 2 — in `docs/definition-of-done.md`
 
-**Which checkbox:**
+**Which checkbox:** 
+"The code is well written... checkbox..."
 
 **Why it can't actually be checked:**
+This is an opinion not an acceptance criteria.
 
 **My replacement, phrased so that it can be:**
+Every public class has a comment that states why it exists.
 
 ---
 
 ### Flaw 3 — in `docs/sprint-01-plan.md`
 
-**Which item:**
+**Which item:** 
+"I might get busy this week."
 
-**Why it isn't really what the document calls it:**
+**Why it isn't really what the document calls it:** 
+This risk can't be mitigated and is a forever risk.
 
 **My repaired version, including a mitigation someone could actually act on:**
+Monday through Wednesday are unavailable so all story points must be done by Saturday night at midnight.
 
 ---
 
@@ -76,23 +86,42 @@ sentences.
 > nothing. "Its third criterion names an observable output — the same object reference — so
 > two people would always agree whether it passed" earns full marks.
 
-### Strong story 1: ______
+### Strong story 1: ______ US-1.1
+As a game designer, I want every tunable number to live in one configuration file, so that I can rebalance the game without recompiling it.
 
 **INVEST letters it satisfies especially well:**
+I: one config file instead of multiple files means I don't need to recompile as often.
+N: can negotiate how many numbers are tunable, cutting down on what is adjusted.
+V: having one config file for these numbers keeps everything organized.
+E: creating such a file shouldn't take more than a few hours.
+T: will be able to test variables like max health or equipment loads.
 
 **What specifically makes its acceptance criteria checkable:**
+All four acceptance criteria are concrete and testable.
 
-### Strong story 2: ______
+### Strong story 2: ______ US-1.2
+As a developer, I want one seeded source of randomness, so that a bug someone reports can be reproduced exactly on my machine.
 
 **INVEST letters it satisfies especially well:**
+E: having one source of randomness can make it so bugs are reproducible, cutting down on fix time.
+S: having one source of randomness is about as small as you can make for an iteration.
+T: can replicate bugs more reliably and find what needs to be fixed.
 
 **What specifically makes its acceptance criteria checkable:**
+All acceptance criteria are testable.
 
-### Strong story 3: ______
+### Strong story 3: ______ US-0.2
+As a developer, I want continuous integration to fail loudly on a broken test, so that I can't merge work that doesn't run.
 
 **INVEST letters it satisfies especially well:**
+I: is an independent test that can be easily reversed.
+V: is a valuable function in case of non-compilable code.
+E: it is a quick check to see if it is working.
+S: a single check to makes sure it'll catch bad compiles.
+T: can test if code needs to be fixed.
 
 **What specifically makes its acceptance criteria checkable:**
+It is easily checked to see if it functions correctly.
 
 ---
 
@@ -104,12 +133,13 @@ acceptance criterion each piece satisfies.
 
 | What I'd expect in the diff | Which acceptance criterion it satisfies |
 |---|---|
-|  |  |
-|  |  |
-|  |  |
-|  |  |
+| config.json | AC1 |
+| Config class | AC3 |
+| GameWorld class | AC2 |
+| Main class | AC1 |
 
 **One sentence: how did the acceptance criteria help you predict the shape of the work?**
+Acceptance criteria stated a need that dictated of a class or type.
 
 ---
 
@@ -130,4 +160,6 @@ up the way it did.
 
 What is one thing about the Scrum process you still don't understand after this week? A good
 question here is worth more to me than a confident wrong answer.
+
+How would one be able to determine how long a Sprint should last? 
 
