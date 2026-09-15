@@ -47,3 +47,4 @@ public final class RandomSource {
     public static void resetForTests() { instance = null; }
 
 }
+
