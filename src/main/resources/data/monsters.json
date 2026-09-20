@@ -22,5 +22,5 @@
   "rime_wight":         { "name": "Rime Wight",  "hp": 16, "attack": 7, "xp": 13, "theme": "winterfell" },
   "ice_stalker":        { "name": "Ice Stalker",    "hp": 21, "attack": 5, "xp": 11, "theme": "winterfell" },
   "snow_elemental":     { "name": "Snow Elemental",    "hp": 17, "attack": 8, "xp": 16, "theme": "winterfell" },
-  "white_walker_king":  { "name": "White Walker King",   "hp": 55, "attack": 13, "xp": 54, "theme": "winterfell", "boss": true }
+  "white_walker_king":  { "name": "White Walker King Tyrant",   "hp": 55, "attack": 13, "xp": 54, "theme": "winterfell", "boss": true }
 }
