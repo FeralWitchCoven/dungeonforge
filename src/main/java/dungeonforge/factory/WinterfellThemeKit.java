@@ -31,7 +31,7 @@ public class WinterfellThemeKit implements ThemeKit {
 
     @Override
     public Monster createBoss(int depth) {
-        return factory.create("white_walker_king", depth);
+        return factory.create("night_king", depth);
     }
 
     @Override
