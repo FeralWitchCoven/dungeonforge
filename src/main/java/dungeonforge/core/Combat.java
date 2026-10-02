@@ -1,9 +1,12 @@
 package dungeonforge.core;
 
+import dungeonforge.behavior.Action;
 import dungeonforge.config.GameConfig;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static dungeonforge.behavior.Action.Type.ATTACK;
 
 /**
  * WEEK 5 -- a minimal encounter resolver. New this week so that monsters have something to
@@ -50,7 +53,7 @@ public class Combat {
 
             // --- monsters' turn ---
             for (Monster m : livingMonsters(room)) {
-                monsterActs(m, player);
+                monsterActs(m, player, room);
             }
         }
         return player.isAlive();
@@ -64,10 +67,30 @@ public class Combat {
      *  - a monster cannot CHANGE tactics when it is badly wounded, because the behaviour
      *    is not a thing that can be swapped -- it is code baked into the encounter loop
      */
-    private void monsterActs(Monster m, Player player) {
-        int damage = m.getAttackPower();
-        player.takeDamage(damage);
-        System.out.println("      " + m.getName() + " hits you for " + damage);
+    private void monsterActs(Monster m, Player player, Room room) {
+        if(m.getStrategy() == null) return;
+        Action action = m.getStrategy().chooseAction(m, player, room);
+        if(action == null) return;
+
+        switch (action.getType()) {
+            case ATTACK -> {
+                int dmg = m.getAttackPower();
+                player.takeDamage(dmg);
+            }
+            case RANGED_ATTACK -> {
+                int dmg = Math.max(1, (int)Math.round(m.getAttackPower() * 0.8));
+                player.takeDamage(dmg);
+            }
+            case FLEE -> {
+                room.getMonsters().remove(m);
+            }
+            case HEAL_ALLY -> {
+                if(action.getTarget() != null) {
+                    action.getTarget().heal(5);
+                }
+            }
+            case WAIT -> { }
+        }
     }
 
     private boolean hasLiving(Room room) { return firstLiving(room) != null; }
