@@ -28,7 +28,7 @@ public class FactoryTest {
     // US-2.1: Simple Factory
     @Test
     void everyBlueprintInTheDataFileIsRegistered() {
-        assertEquals(21, factory.blueprintCount());
+        assertEquals(19, factory.blueprintCount());
         assertTrue(factory.has("skeleton"));
         assertTrue(factory.has("rime_tyrant"));
     }
@@ -114,7 +114,7 @@ public class FactoryTest {
                 case "Crypt" -> Set.of("Skeleton", "Crypt Rat", "Wight", "Bone Priest", "Ghoul", "Bone Tyrant");
                 case "Forge" -> Set.of("Imp", "Slag Hound", "Ember Sprite", "Forge Golem", "Forge Tyrant");
                 case "Frost" -> Set.of("Frost Wight", "Rime Stalker", "Ice Lurker", "Hoar Shade", "Rime Tyrant");
-                case "Winterfell" -> Set.of("Direwolf", "Rime Wight", "Ice Stalker", "Snow Elemental", "White Walker King Tyrant");
+                case "Winterfell" -> Set.of("Direwolf", "White Walker", "Night King Tyrant");
                 default -> Set.of();
             };
             for(Room room : level.getRooms()) {
