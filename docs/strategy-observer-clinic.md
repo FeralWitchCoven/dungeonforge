@@ -51,16 +51,20 @@ type, or a `DangerMeter` that notices when your HP drops below 25%. Subscribe it
 
 | Question | Your answer |
 |---|---|
-| How many **new** files? | |
-| Did `Combat.java` change? | |
-| Did `EventBus.java` change? | |
-| Did any existing listener change? | |
-| Which files changed at all? | |
+| How many **new** files? | 1 |
+| Did `Combat.java` change? | no |
+| Did `EventBus.java` change? | no |
+| Did any existing listener change? | no |
+| Which files changed at all? | added 1, changed Main |
 
 **Paste `git diff --stat`:**
 
 ```
-
+$ git diff --stat
+warning: in the working copy of 'src/main/java/dungeonforge/Main.java', LF will be replaced by CRLF the next time Git touches it
+ docs/strategy-observer-clinic.md     | 10 ++---
+ src/main/java/dungeonforge/Main.java | 79 +++++++++++++++++++++++++++++++-----
+ 2 files changed, 73 insertions(+), 16 deletions(-)
 ```
 
 ### Then the question that matters
@@ -72,6 +76,13 @@ line, it's obvious, and it needs no `EventBus`, no `GameEvent`, and no `GameEven
 **Write a paragraph.** What does the direct call cost you that the bus does not? Give a
 *concrete* scenario — a change somebody might ask for — where the direct-call version forces
 you to edit `Combat` and the bus version does not.
+
+A future feature where a direct-call would force me to change `Combat` would be something like
+giving the player a way to heal themselves outside of potions, like a healing spell. Having it be
+a direct-call to keep track of how much the player healed this way would need another call like
+the `questTracker` call. This, I think, can easily be done with an event bus with less resources
+used, but as a direct-call it could potentially cause the program to slow down if the player needs
+to heal a lot from near death.
 
 > A good answer names a specific future feature. A great answer names one from this course's
 > remaining schedule.
@@ -88,7 +99,16 @@ Forge Golem changes tactics: aggressive -> skittish.
 **Paste yours:**
 
 ```
-
+  Skeleton changes tactics: aggressive -> skittish
+  Skeleton flees into the dark.
+  Bone Priest mends Wight
+  Wight changes tactics: aggressive -> skittish
+  Wight flees into the dark.
+  Imp changes tactics: ranged -> skittish
+  Imp flees into the dark.
+  Imp changes tactics: ranged -> skittish
+  Imp flees into the dark.
+  Ember Sprite changes tactics: ranged -> skittish
 ```
 
 **Now answer:** at the moment that line was printed, what changed about the `Forge Golem`
@@ -109,6 +129,8 @@ holds one and delegates to it.
 **Without looking ahead, guess:** what could possibly distinguish them? You are not expected
 to be right. You're expected to have a hypothesis on record before Week 8 tells you.
 
+I think that the `State` pattern distinguishes itself from the `Strategy` pattern
+by having multiple objects use one interface to implement one or more `States` like status effects.
 
 **And anything else that's still unclear:**
 
